@@ -8,14 +8,15 @@ public class Player {
     private long accountBalance;
     private int wins;
     private int plays;
-    private int toltalWin;
+    // player coin win and loss total for calculating casino total balance change
+    private int totalWin;
 
     public Player(String uuid) {
         this.uuid = uuid;
         accountBalance = 0;
         wins = 0;
         plays = 0;
-        toltalWin = 0;
+        totalWin = 0;
     }
 
     public String getUuid() {
@@ -50,15 +51,19 @@ public class Player {
         this.plays = plays;
     }
 
-    public int getToltalWin() {
+    public int getTotalWin() {
 
-        return toltalWin;
+        return totalWin;
     }
 
-    public void setToltalWin(int toltalWin) {
-        this.toltalWin = toltalWin;
+    public void setTotalWin(int totalWin) {
+        this.totalWin = totalWin;
     }
 
+    /**
+     * Calculates win rate
+     * @return win rate
+     */
     private BigDecimal getWinRate(){
 
         BigDecimal win = BigDecimal.valueOf(wins);

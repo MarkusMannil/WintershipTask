@@ -5,7 +5,6 @@ import DataObjects.Player;
 import Exceptions.MatchNotFoundException;
 
 import java.io.*;
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Parser {
@@ -138,7 +137,7 @@ public class Parser {
             // sort the player list by id and write them to the file, adding their total win to casino balance
             for (Player player : players.stream().sorted(Comparator.comparing(Player::getUuid)).toList()) {
                 br.write(player.toString() + "\n");
-                casinoHostBalance += player.getToltalWin();
+                casinoHostBalance += player.getTotalWin();
             }
         } else br.write("\n");
 
@@ -238,7 +237,7 @@ public class Parser {
         // get player coins return on bet
         int playerCoinChange = match.processBet(side, amount);
         // keep track of player coin changes to casino balance
-        player.setToltalWin(player.getToltalWin() + playerCoinChange);
+        player.setTotalWin(player.getTotalWin() + playerCoinChange);
         // change casino balance
         player.setAccountBalance(player.getAccountBalance() + (long) playerCoinChange);
         // update player wins
@@ -247,6 +246,4 @@ public class Parser {
         }
         return true;
     }
-
-
 }
